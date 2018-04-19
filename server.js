@@ -9,12 +9,13 @@ require('dotenv').config();
 
 // Application Setup
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const CLIENT_URL = process.env.CLIENT_URL;
 const DATABASE_URL = process.env.DATABASE_URL;
+const conString = 'postgres:postgres:82469173@localhost:5432/books_app';
 
 // Database Setup
-const client = new pg.Client(DATABASE_URL);
+const client = new pg.Client(conString);
 client.connect();
 client.on('error', err => console.error(err));
 
