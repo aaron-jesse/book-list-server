@@ -41,3 +41,12 @@ app.get('/api/v1/books', (req, res) => {
    .then(results => res.send(results.rows))
    .catch(console.error);
 });
+
+app.get('api/v1/books/:id', (req, res) => {
+  client.query(`
+  SELECT * from BOOKS where book_id=$1
+  `,
+  [request.params.id]
+).then(results => res.send(results.rows));
+
+});
