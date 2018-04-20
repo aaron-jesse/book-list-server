@@ -15,7 +15,7 @@ const DATABASE_URL = process.env.DATABASE_URL;
 const conString = 'postgres:postgres:82469173@localhost:5432/books_app';
 
 // Database Setup
-const client = new pg.Client(conString);
+const client = new pg.Client(DATABASE_URL);
 client.connect();
 client.on('error', err => console.error(err));
 
@@ -25,6 +25,10 @@ app.use(cors());
 // API Endpoints
 
 // app.get('*', (req, res) => res.redirect(CLIENT_URL));
+app.get('*', (req, res) => {
+res.send('Welcome to database landing page');
+});
+
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
 app.get('/test', (req, res) => {
