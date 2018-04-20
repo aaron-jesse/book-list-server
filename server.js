@@ -1,11 +1,12 @@
 'use strict'
 
 // Application dependencies
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
 const pg = require('pg');
-require('dotenv').config();
+
 
 // Application Setup
 const app = express();
