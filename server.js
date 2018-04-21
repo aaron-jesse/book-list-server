@@ -23,12 +23,7 @@ client.on('error', err => console.error(err));
 // Application Middleware
 app.use(cors());
 
-// API Endpoints
-
-// app.get('*', (req, res) => res.redirect(CLIENT_URL));
-// app.get('*', (req, res) => {
-// res.send('Welcome to database landing page') do some stuff;
-// });
+app.get('*', (req, res) => res.redirect('/'));
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
@@ -50,3 +45,11 @@ app.get('api/v1/books/:id', (req, res) => {
 ).then(results => res.send(results.rows));
 
 });
+
+app.post('api/v1/books', (req, res) => {
+  client.query(`
+    INSERT INTO books (book_id, title, author, image, isbn)
+    VALUES($1, $2, $3, $4, $5),
+    [request.body.book_id, request.body.title, request.body.author, request.body.author, request.body.image, request.body.isbn]
+ `)
+})
