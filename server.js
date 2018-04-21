@@ -23,12 +23,7 @@ client.on('error', err => console.error(err));
 // Application Middleware
 app.use(cors());
 
-// API Endpoints
-
-// app.get('*', (req, res) => res.redirect(CLIENT_URL));
-// app.get('*', (req, res) => {
-// res.send('Welcome to database landing page') do some stuff;
-// });
+app.get('*', (req, res) => res.redirect('/'));
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
