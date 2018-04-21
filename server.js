@@ -50,3 +50,11 @@ app.get('api/v1/books/:id', (req, res) => {
 ).then(results => res.send(results.rows));
 
 });
+
+app.post('api/v1/books', (req, res) => {
+  client.query(`
+    INSERT INTO books (book_id, title, author, image, isbn)
+    VALUES($1, $2, $3, $4, $5),
+    [request.body.book_id, request.body.title, request.body.author, request.body.author, request.body.image, request.body.isbn]
+ `)
+})
