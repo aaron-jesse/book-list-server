@@ -23,7 +23,7 @@ client.on('error', err => console.error(err));
 // Application Middleware
 app.use(cors());
 
-app.get('*', (req, res) => res.redirect('/'));
+// app.get('*', (req, res) => res.redirect(CLIENT_URL));
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
