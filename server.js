@@ -22,8 +22,9 @@ client.on('error', err => console.error(err));
 
 // Application Middleware
 app.use(cors());
+// app.use(express({extended: true}));
 
-// app.get('*', (req, res) => res.redirect(CLIENT_URL));
+// app.get('*', (req, res) => res.redirect('/'));
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
 
@@ -32,17 +33,18 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/api/v1/books', (req, res) => {
- client.query(`SELECT book_id, title, author, image, isbn FROM books;`)
+ client.query(`SELECT book_id, title, author, image, isbn, description FROM books;`)
    .then(results => res.send(results.rows))
    .catch(console.error);
 });
 
 app.get('api/v1/books/:id', (req, res) => {
   client.query(`
-  SELECT * from BOOKS where book_id=$1
+  SELECT * from BOOKS where book_id=$1;
   `,
-  [request.params.id]
-).then(results => res.send(results.rows));
+  [req.params.id]
+).then(results => res.send(results.rows))
+.catch(err => console.error(err));
 
 });
 
