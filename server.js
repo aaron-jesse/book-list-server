@@ -22,11 +22,11 @@ client.on('error', err => console.error(err));
 
 // Application Middleware
 app.use(cors());
-// app.use(express({extended: true}));
+// app.use(bodyParser.urlencoded({extended: true}));
 
 // app.get('*', (req, res) => res.redirect('/'));
 
-app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+
 
 app.get('/test', (req, res) => {
  res.send('Skynet online');
@@ -38,21 +38,24 @@ app.get('/api/v1/books', (req, res) => {
    .catch(console.error);
 });
 
-app.get('api/v1/books/:id', (req, res) => {
+app.get('/api/v1/books/:id', (req, res) => {
+  console.log('i am here');
   client.query(`
   SELECT * from BOOKS where book_id=$1;
   `,
   [req.params.id]
-).then(results => res.send(results.rows))
+)
+.then(results => res.send(results.rows[0]))
 .catch(err => console.error(err));
-
 });
 
 
-app.post('api/v1/books', (req, res) => {
+app.post('/api/v1/books/new', (req, res) => {
   client.query(`
     INSERT INTO books (book_id, title, author, image, isbn)
     VALUES($1, $2, $3, $4, $5),
     [request.body.book_id, request.body.title, request.body.author, request.body.author, request.body.image, request.body.isbn]
  `)
 })
+
+app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
