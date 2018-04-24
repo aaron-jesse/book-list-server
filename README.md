@@ -1,22 +1,17 @@
 # Project Name
 
-**Author**: Your Name Goes Here
+**Author**: Aaron-Jesse
 **Version**: 1.1.0 (increment the patch/fix version number up if you make more commits past your first submission)
 
 ## Overview
-<!-- Provide a high level overview of what this application is and why you are building it, beyond the fact that it's an assignment for a Code Fellows 301 class. (i.e. What's your problem domain?) -->
+This application is for a user to look at a book list, read detailed info about a particular book, and add their own if they choose. 
 
 ## Getting Started
-<!-- What are the steps that a user must take in order to build this app on their own machine and get it running? -->
+The user has to navigate to the site URL, no install required as a server handles the requests between the client UI and database.
 
 ## Architecture
-<!-- Provide a detailed description of the application design. What technologies (languages, libraries, etc) you're using, and any other relevant design information. -->
+On the backend this uses express and node for the server, along with pg and cors. Environment variables set with dotenv. The front side uses jquery, pages.js and handlebars for templating.
 
 ## Change Log
-<!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples:
+WIP
 
-01-01-2001 4:59pm - Application now has a fully-functional express server, with GET and POST routes for the book resource.
-## Credits and Collaborations
-<!-- Give credit (and a link) to other people or resources that helped you build this application. -->
-
--->
